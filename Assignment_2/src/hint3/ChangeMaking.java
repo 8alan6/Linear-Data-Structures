@@ -44,42 +44,25 @@ public class ChangeMaking {
 	 */
 	public static int makeChangeGreedy(int[] denoms, int val)
 	{
-		int value = val;
-		int count = 0;
-		while(val>0) {
-		if(val>=20) {
-				val = val - 20;
-				System.out.println();
-				count += 1;
-		}
-		else if(val>=10) {
-				val = val - 10;
-				count += 1;
-			}
-		else if(val>=5) {
-				val = val - 5;
-				count += 1;
-			}
-		else if(val>=1) {
-				val = val - 1;
-				count += 1;
-			}
-		}
-		
-		int num = 0;
-		if(count == 0) {
-			System.out.println("No Coins required to make up a value of "+count+"c");
+		int num = 0;												//declare int num = 0. this will be the number of times a coin is used
+		int count = 0;												//declare int count = 0
+		if(val == 0) {
+			System.out.println("No Coins required to make up a value of "+val+"c");
 		}
 		else {
-		System.out.println(value+"c is made up of the following "+count+" coins");
-		for(int i=0; i<denoms.length; i++) {
-			if(denoms[i]<=value) {
-			num = value/denoms[i];	
-			System.out.println(num+"  x  "+denoms[i]+"c coins.");
-			value-=num*denoms[i];
-		}
-			}
-		}
+			System.out.println("");
+			System.out.println("");
+			for(int i=0; i<denoms.length; i++) {						//loop through each value int denoms Array
+				if(denoms[i]<=val) {									//if the value of denoms is less or equal to val
+					num = val/denoms[i];									//num is val divided by the value of denoms
+																			// eg. 35/20 = 1, 15/10 = 1, 5/5 = 1
+
+					System.out.println(num+"  x  "+denoms[i]+"c coins.");	//print value of num, denoms (coin value)
+					val -= num*denoms[i];									//value = value - (num*denoms[i])
+					count++;
+				}															//eg. 	value = 35 - (35/20  x  20)		35 - 20 = 15	
+			}														//		value = 15 - (15/10  x  10)	 	15 - 10 = 5
+		}															// 		value = 5  - ( 5/5   x   5)		5  -  5 = 0		finished			
 		return count;// Complete this function
 	}
 

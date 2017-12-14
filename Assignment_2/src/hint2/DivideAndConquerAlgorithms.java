@@ -100,8 +100,8 @@ public class DivideAndConquerAlgorithms {
 			int e0 = m.getElement(0);			//e0 = the element at position 0 of list m
 			System.out.println(e0);				//print the value of e0
 
-			if(m.length()>1) {	// putting in this if statement means "MyDynamicList is Empty won't print"
-								// as MyDynamicList will always have one element remaining.
+			if(m.length()>1) {					// putting in this if statement means "MyDynamicList is Empty won't print"
+												// as MyDynamicList will always have one element remaining.
 				m.removeElement(0);				//removes element at position 0 of List m.
 				recursiveDisplayElements(m);	//recursively solve the smaller problem.
 				m.addElement(0, e0);			//add e0 to the List m1 to keep its original state.

@@ -120,7 +120,7 @@ public class DivideAndConquerAlgorithms {
 		else if(m.length() >= 2) {			//if m has 2 or more elements,
 			int e0 = m.getElement(0);		//declare int e0 equal to m.getElement(0).
 			int e1 = m.getElement(1);		//declare int e1 equal to m.getElement(1).
-			if(e1>e0) {					//if e0 is greater than e1 the list not in decreasing order.
+			if(e1>e0) {					//if e1 is greater than e0 the list not in decreasing order.
 				return false;			
 			}
 			else {						//else if e0 >= e1. 
@@ -225,17 +225,13 @@ public class DivideAndConquerAlgorithms {
 	 * @param n: The length of the desired pattern
 	 */	
 	public void drawImage(int n){
-		int counter = 0;
-		while(counter<n) {
-			counter++;
-			for (int i=1; i<=counter; i++) {
-				System.out.print("*");
-			}
-			System.out.println("");
+		int count = n - 1;
+			while(count+1>0) {
+			drawLine(n - count);
+			count--;
 		}
-		System.out.println("----------");
+			System.out.println(".......................");
 	}
-
 	//-------------------------------------------------------------------
 	// 7. drawLine --> Prints a line of a given length
 	//-------------------------------------------------------------------	
@@ -244,6 +240,8 @@ public class DivideAndConquerAlgorithms {
 		if (n > 0) {
 			System.out.print("*");
 			drawLine(n - 1);
+		}
+		else {
 			System.out.println();
 		}
 	}
