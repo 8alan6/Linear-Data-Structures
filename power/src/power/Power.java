@@ -1,12 +1,34 @@
 package power;
+import java.util.Scanner;
 
-public class Power {
+import persistence.FileStorage;
+import room.RoomList;
 
-	public static int factorial(int n){
-		if(n==1) {
-			return 1;
+public class Power {	
+	public static void main(String[] args) {
+		factorial(5);
+		System.out.println("2^3 = "+power(2,3));	
+}
+	
+	public static void factorial(int n){
+		Scanner keyboard = new Scanner(System.in);
+		int newNum = 0;
+		System.out.println("Please enter a number");
+		
+		try {
+			newNum = keyboard.nextInt();
+		}catch(Exception e) {
+			System.out.println("INPUT MISMATCH ERROR");
+			factorial(5);
 		}
-		return n*factorial(n-1);
+		
+		
+		
+		
+		System.out.println(newNum);
+		
+		
+		
 	}
 	
 	
@@ -28,10 +50,4 @@ public class Power {
 		return ( n * power(n,m-1));		//n multiply by (solve for smaller list)
 
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("5! = "+factorial(5));
-		System.out.println("2^3 = "+power(2,3));	
-	}
-
 }
