@@ -25,9 +25,7 @@ public class RoomList  implements Serializable{
 	public Room getRoomByRoomNumber(int roomNum, RoomList rooms) {	//gets room by room number
 		for(Room r: rooms.getList()) {								//scan rooms in the roomlist	
 			if(r.getRoomNumber() == roomNum){						//if roomNum is a room number on the list
-				if(r.getGuest().size()>0) {							//if there are guest in the room
-					return r;										//return the room
-				}
+				return r;
 			}
 		}
 		return null;

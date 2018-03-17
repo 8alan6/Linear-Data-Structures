@@ -16,7 +16,7 @@ public class Controller {
 	Scanner keyboard = new Scanner(System.in);
 	PatientList patients = null;
 	Patient p = null;
-	ProcedureList procedures = null;
+	ProcedureList procedureList = null;
 	Procedure procedure = null;
 	
 	
@@ -60,13 +60,30 @@ public class Controller {
 	}
 	
 	public void createPatientProcedureList() {
-			patients = loadDefaultPatients();
-			procedures = loadDefaultProcedures();
-			loadMenu();
+		patients = (PatientList)SerialStorage.readObject("patientList.ser");	
+		
+		if(patients==null) {
+			patients = loadDefaultPatients();	
+			}
+			else {
+				System.out.println("Patients loaded from file");
+			}
+		
+		procedureList = (ProcedureList)SerialStorage.readObject("procedures.ser");
+		
+		if(procedureList==null) {
+			procedureList = loadDefaultProcedures();	
+			}
+			else {
+				System.out.println("Procedures loaded from file");
+			}
+	
+		loadMenu();
 	}
 	
+	
 	public static PatientList loadDefaultPatients() {							//Generates a set of Rooms for the hotel.
-		PatientList patients = new PatientList();								//RoomList rooms is created
+		PatientList patList = new PatientList();																							//RoomList rooms is created
 		
 		Patient p1 = new Patient("Michael","J. Fox","Cork","087-1599874");
 		Patient p2 = new Patient("Al","Pacino","Limerick","086-1245787");
@@ -79,37 +96,39 @@ public class Controller {
 		Patient p9 = new Patient("Michael","Schumacher","Galway","086-1474141");
 		Patient p10 = new Patient("Morgan","Freeman","Clare","083-1595951");
 		
-		patients.addPatient(p1);
-		patients.addPatient(p2);
-		patients.addPatient(p3);
-		patients.addPatient(p4);
-		patients.addPatient(p5);
-		patients.addPatient(p6);
-		patients.addPatient(p7);
-		patients.addPatient(p8);
-		patients.addPatient(p9);
-		patients.addPatient(p10);
+		patList.addPatient(p1);
+		patList.addPatient(p2);
+		patList.addPatient(p3);
+		patList.addPatient(p4);
+		patList.addPatient(p5);
+		patList.addPatient(p6);
+		patList.addPatient(p7);
+		patList.addPatient(p8);
+		patList.addPatient(p9);
+		patList.addPatient(p10);
 		
-		//FileStorage.storeObject(patients, "patient.ser");										//save rooms object to a file.
-		return patients;																		//return the RoomList rooms
+		SerialStorage.storeObject("patientList.ser", patList);
+		return patList;																		//return the RoomList rooms
 }
 
 	public static ProcedureList loadDefaultProcedures() {							//Generates a set of Rooms for the hotel.
-		ProcedureList pList = new ProcedureList();
+		ProcedureList proList = new ProcedureList();
+		
 		Procedure filling = new Procedure("Filling", 49.99);
 		Procedure rootCanal = new Procedure("Root Canal", 199.99);
 		Procedure cleaning = new Procedure("Cleaning", 28.55);
 		Procedure braces = new Procedure("Braces", 5600.00);
 		Procedure crown = new Procedure("Crown", 99.99);
-		pList.addProcedure(filling);
-		pList.addProcedure(rootCanal);
-		pList.addProcedure(cleaning);
-		pList.addProcedure(braces);
-		pList.addProcedure(crown);
+		
+		proList.addProcedure(filling);
+		proList.addProcedure(rootCanal);
+		proList.addProcedure(cleaning);
+		proList.addProcedure(braces);
+		proList.addProcedure(crown);
 		
 		
-		//FileStorage.storeObject(patients, "patient.ser");										//save rooms object to a file.
-		return pList;																		//return the RoomList rooms
+		SerialStorage.storeObject("procedures.ser", proList);										//save rooms object to a file.
+		return proList;																		//return the RoomList rooms
 }
 	
 	public void addPatient(PatientList pList) {
@@ -145,7 +164,7 @@ public class Controller {
 			break;
 
 		case 2:													//Display Procedure List
-			procedures.displayProcedures();
+			procedureList.displayProcedures();
 			break;
 			
 		case 3:

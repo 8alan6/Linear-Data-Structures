@@ -195,12 +195,18 @@ public class Controller {
 		int roomNum = keyboard.nextInt();							//user enters room number
 		
 		room = rooms.getRoomByRoomNumber(roomNum, rooms);			//call the getRoomByRoomNumber method and return the room
+		if(room.getGuest().size()==0) {
+			System.out.println("\n***************************************************");
+			System.out.println("There are no guests staying in room number "+roomNum);
+			System.out.println("***************************************************\n");
+		}
+		else {
 		double roomPrice = room.Price(guest, room, roomNum);		//rooms bill is called using the room.Price method
 		
 		if(type == 2) {												//if int 'type' is set to 2 when the method is called it brings
 			makePayment(roomPrice, room, 0);						//the user to pay the bill now with the make payment method
 		}
-																	//if int is not 2 the this method is over and the user only sees
+		}													//if int is not 2 the this method is over and the user only sees
 																	//the bill for the room and is returned to the main menu	
 	}
 
@@ -214,7 +220,8 @@ public class Controller {
 				System.out.println("\n             GUESTS CHECKED-OUT           ");		
 				room.removeAllGuestsFromRoom(room);										//guests of that room are checked out
 				System.out.println("*******  THANK YOU FOR YOUR PAYMENT  *********");				
-				dayEarnings += moneyPayed; 												//money received is added to the earnings
+				dayEarnings += moneyPayed;
+				FileStorage.storeObject(dayEarnings, "Earnings.ser");																		//money received is added to the earnings
 				if(moneyPayed - roomPrice > 0) {										//if they payed more than required
 					System.out.println("\tCHANGE DUE TO CUSTOMER : €"+(moneyPayed-roomPrice)+"0"); //amount of change due is displayed
 					dayEarnings = dayEarnings - (moneyPayed - roomPrice);				//change given back is removed from earnings

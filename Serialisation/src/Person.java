@@ -14,6 +14,6 @@ public class Person implements Serializable{
 	public int getAge() {return this.age;}
 	
 	public String toString() {
-		return "Name: "+getName()+", Age: "+getAge();
+		return "\tName: "+getName()+"\tAge: "+getAge();
 	}
 }

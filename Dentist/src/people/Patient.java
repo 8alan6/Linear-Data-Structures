@@ -1,12 +1,11 @@
 package people;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import maintenence.Procedure;
 import monetary.Invoice;
 
-public class Patient extends Person implements Serializable{
+public class Patient extends Person {
 
 	private int ID;
 	private String phoneNum;

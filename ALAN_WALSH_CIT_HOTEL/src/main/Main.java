@@ -42,6 +42,18 @@ public class Main {
 		Room su2 = new Suite();
 		Room su3 = new Suite();
 		
+		Guest g1 = new Student("DeGea");
+		Guest g2 = new Student("Antonio");
+		Guest g3 = new Lecturer("Bailly");
+		Guest g4 = new Student("Rojo");
+		Guest g5 = new Lecturer("Shaw");
+		Guest g6 = new Student("Matic");
+		Guest g7 = new Lecturer("Pogba");
+		Guest g8 = new Student("Martial");
+		Guest g9 = new Lecturer("Alexis");
+		Guest g10 = new Student("Mata");
+		Guest g11 = new Student("Lukaku");
+		
 		Room d1 = new Double();											//6 new Doubles are created
 		Room d2 = new Double();
 		Room d3 = new Double();
@@ -55,6 +67,25 @@ public class Main {
 		Room s4 = new Single();
 		Room s5 = new Single();
 		Room s6 = new Single();
+		try {
+			su1.addGuest(g1);
+			su1.addGuest(g2);
+			su1.addGuest(g3);
+			d1.addGuest(g8);
+			d1.addGuest(g7);
+			d2.addGuest(g6);
+			s1.addGuest(g5);
+			s2.addGuest(g4);
+			su2.addGuest(g11);
+			su3.addGuest(g10);
+			d3.addGuest(g9);
+		} catch (MyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 		rooms.addRoom(su1);												//all create rooms are added to the RoomList Rooms.		
 		rooms.addRoom(su2);

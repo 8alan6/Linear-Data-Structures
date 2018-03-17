@@ -136,15 +136,23 @@ public class Menu {
 	}																					//START PROGRAM METHOD ENDS
 
 	public void displayMenu() {															//This is the displayMenu method
+		double overallTotal; 
+		try{
+			overallTotal = (double)FileStorage.readObject("Earnings.ser");
+		}
+		catch(Exception e){
+			overallTotal = 0;
+		}
+		overallTotal = overallTotal + control.totalEarnings();
 		System.out.println("");
 		System.out.println("    CORK INSTITUTE OF TECHNOLOGY HOTEL    ");
-		System.out.println("*******************************************");
+		System.out.println("*********************** Days Earnings: €"+control.totalEarnings()+"0");
 		System.out.println("1. Display All Available Rooms");
 		System.out.println("2. Display All Current Guests");
 		System.out.println("3. Process A New Reservation");
 		System.out.println("4. Display Payments");
 		System.out.println("5. Exit System");
-		System.out.println("*********************** Days Earnings: €"+control.totalEarnings()+"0");
+		System.out.println("********************** Total Earnings: €"+overallTotal+"0");
 	}
 
 	public void reservationMenu() {														//This is the reservationMenu method

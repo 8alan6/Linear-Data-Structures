@@ -1,9 +1,10 @@
 package maintenence;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import people.Patient;
 
-public class ProcedureList {
+public class ProcedureList implements Serializable{
 
 		private ArrayList<Procedure> procedureList;
 		private Procedure procedure;

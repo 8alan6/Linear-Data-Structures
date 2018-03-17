@@ -16,13 +16,13 @@ public class Main {
 		RoomList rooms = null;
 		Room room = null;
 		Guest guest = null;
-		try {
-			rooms = (RoomList)FileStorage.readObject("rooms.ser");		//read RoomList stored on file if one exists
-			room = (Room)FileStorage.readObject("room.ser");			//read Room stored on file if one exists
-			guest = (Guest)FileStorage.readObject("guest.ser");			//read Guest stored on file if one exists
-		}catch(Exception e) {
+		//try {
+			//rooms = (RoomList)FileStorage.readObject("rooms.ser");		//read RoomList stored on file if one exists
+			//room = (Room)FileStorage.readObject("room.ser");			//read Room stored on file if one exists
+			//guest = (Guest)FileStorage.readObject("guest.ser");			//read Guest stored on file if one exists
+		//}catch(Exception e) {
 			rooms = loadDefaultRooms();									//if no files exist, load a set of empty defaultRooms
-		}
+		//}
 		
 		int freeSuites = rooms.getFreeRooms("suite");					//how many free suites stored to int.
 		int freeDoubles = rooms.getFreeRooms("double");					//how many free doubles stored to int.

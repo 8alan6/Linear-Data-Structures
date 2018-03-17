@@ -1,6 +1,8 @@
 package maintenence;
 
-public class Procedure {
+import java.io.Serializable;
+
+public class Procedure implements Serializable {
 
 	private int proID;
 	private String name;

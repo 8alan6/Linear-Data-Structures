@@ -10,7 +10,6 @@ import monetary.Invoice;
 import java.util.Scanner;
 
 public class PatientList implements Serializable {
-	Scanner keyboard = new Scanner(System.in);
 	private ArrayList<Patient> invoiceList;
 	private Patient patient;
 	
@@ -34,6 +33,8 @@ public class PatientList implements Serializable {
 	}
 	
 	public Patient findPatient(PatientList pList) {											//Finds patient by Name and ID Number
+
+		Scanner keyboard = new Scanner(System.in);
 		String fName;
 		int ID;
 		System.out.println("What is the first name of the patient you wish to remove?");

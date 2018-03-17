@@ -1,5 +1,6 @@
 package application;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,51 +9,37 @@ import java.util.Scanner;
 
 public class SerialStorage {
 
-	private Scanner keyboard;
-
-	//save an object to file..
-	//all our objects are at their base an OBJECT
-	public boolean saveToFile(String filename, Object o) {
+	public static void storeObject(String filename, Object o) {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(filename);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(o);
 			out.close();
 			fileOut.close();
-			System.out.printf("Serialized data is saved in " + filename);
+			System.out.printf("Serialized data is saved in "+filename+"\n");
 		} catch (IOException i) {
-			i.printStackTrace();
-			return false; // something went wrong
+			storeObject("IOException.ser",i);
 		}
-
-		return true;
 	}
 
-	//return an object as everything is an object
-	//we can cast to our calling class later
-	public Object readFromFile(String filename) {
-		Object e = null;
+	public static Object readObject(String filename) {
+		Object obj = null;
 		try {
 			FileInputStream fileIn = new FileInputStream(filename);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			e = in.readObject();
+			obj = in.readObject();
 			in.close();
 			fileIn.close();
+		} catch (FileNotFoundException a) {
+			storeObject("FileNotFound.ser", a);
+			a.printStackTrace();
 		} catch (IOException i) {
-			keyboard = new Scanner(System.in);
-			String choice;
-			System.out.println("\t"+filename+" does not exist\n\t"+filename+" will be created.");
-			System.out.println("\tDo you wish to print the exception?\t(YES/NO)");
-			choice = keyboard.next();
-			if(choice.toUpperCase().equals("YES")||choice.toUpperCase().equals("Y")) {
-				i.printStackTrace();	
-			}
-			
-			
+			storeObject("IOException.ser", i);
+			i.printStackTrace();
 		} catch (ClassNotFoundException c) {
-			System.out.println("Person class not found");
+			storeObject("ClassNotFoundException.ser", c);
 			c.printStackTrace();
 		}
-		return e;
+		return obj;
 	}
 }
